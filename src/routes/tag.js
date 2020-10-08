@@ -21,13 +21,16 @@ router.put('/' , async ( req,res ) =>{
   try {
      const tag = await Tag.findOne({title: req.body.tagTitle})
      if(!tag){
-         return res.status(400).send('The tag does not exist')
+         return res.status(404).send('The tag does not exist')
      }
     const bookMark = await BookMark.findOneAndUpdate(
          { _id: req.body.bookmarkId }, 
          { $push: { tags: tag._id}},
          { new: true}
          )
+    if(!bookMark){
+        return res.status(404).send('The bookmark does not exist')
+    }     
     await bookMark.save()
     res.status(200).send(bookMark)
   } catch (error) {

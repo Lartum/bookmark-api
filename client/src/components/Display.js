@@ -37,24 +37,20 @@ const Display = () => {
                 <Button onClick={()=> handleClick('tag')}>Display Tags</Button>
             </Col>  
             </Row>
-                { view === 'bookmark' && apiData !== null && apiData.map((data) => 
-                <Col>
+                {apiData !== null && apiData.map((data) => 
+                <Col span={8} offset={8}>
                 <Card title={ data.title} style={{ width:300, marginTop:'25px' }}>
                     <p>id: {data._id}</p>
+                { view === 'bookmark' && <>
                     <p>Link: {data.link}</p>
                     <p>publisher: {data.publisher}</p>
-                    <p>tags: {data.tags}</p>
+                    <p>createdAt: {data.createdAt}</p>
+                    <p>updatedAt: {data.updatedAt}</p>
+                    <p>tags: {data.tags}</p> </>}    
+                    
                 </Card>
                 </Col>
                 )}    
-
-                { view === 'tag' && apiData !== null && apiData.map((data) => 
-                <Col>
-                <Card title={ data.title} style={{ width:300, marginTop:'25px' }}>
-                    <p>id: {data._id}</p>
-                </Card>
-                </Col>
-                )} 
        </>
     )
 }
