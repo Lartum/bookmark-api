@@ -19,7 +19,7 @@ router.post('/' , async (req,res) =>{
 //Attach Tag to a bookmark
 router.put('/' , async ( req,res ) =>{
   try {
-     const tag = await Tag.findOne({title: req.body.title})
+     const tag = await Tag.findOne({title: req.body.tagTitle})
      if(!tag){
          return res.status(400).send('The tag does not exist')
      }
@@ -38,7 +38,7 @@ router.put('/' , async ( req,res ) =>{
 //Remove Tag from a bookmark
 router.patch('/' , async ( req,res ) =>{
     try {
-    const tag = await Tag.findOne({ title: req.body.title})
+    const tag = await Tag.findOne({ title: req.body.tagTitle})
     const tagId = tag._id 
     const bookMark = await BookMark.findOneAndUpdate(
             { _id: req.body.bookmarkId },
