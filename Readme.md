@@ -1,11 +1,13 @@
 <h1>Bookmark-Api </h1>
 
+<p>Live Demo: https://bookmarks-api-212121.herokuapp.com</p>
+
 <h3>How to get started</h3>
 <p>Create a config folder and make new .env file</p>
-<p>-->config
-        -->dev.env
-        -->test.env
-</p>
+
+<p>-->config</p>
+<p>     -->dev.env</p>
+<p>     -->test.env</p>
 
 <h3>List of commands</h1>
 
