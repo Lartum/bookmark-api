@@ -7,12 +7,11 @@ const tag = require('../src/routes/tag')
 const display = require('../src/routes/display')
 const app = express()
 
-
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/bookmarks', bookMark)
 app.use('/tags', tag)
 app.use('/display', display)
-
 
 module.exports = app

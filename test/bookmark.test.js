@@ -18,5 +18,23 @@ const {
 beforeEach( setupDatabase )
 
 test('Should Create a new bookmark', async () =>{
-    
+   const newBookmark =await request(app)
+            .post('/bookmarks')
+            .send({
+                link:'www.bing.com',
+                title:'Bing search engine',
+                publisher:'John Doe'
+            })
+            .expect(201)
+   expect(newBookmark).not.toBeNull()         
 })
+
+test('Should Delete a bookmarkOne', async () =>{
+        await request(app)
+             .delete(`/bookmarks/${bookmarkOneId}`)
+             .send()
+             .expect(200)              
+ })
+
+ 
+ 

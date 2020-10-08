@@ -1,7 +1,6 @@
 const express = require('express')
 const router = new express.Router()
 const BookMark = require('../models/bookmark')
-const { remove } = require('../models/tag')
 const Tag = require('../models/tag')
 
 //Create a new tag
@@ -11,6 +10,7 @@ router.post('/' , async (req,res) =>{
         await tag.save()
         res.status(201).send(tag)
     } catch (error) {
+        console.log("from create new tag route" + error)
         res.status(400).send(error)
     }
 
@@ -31,6 +31,7 @@ router.put('/' , async ( req,res ) =>{
     await bookMark.save()
     res.status(200).send(bookMark)
   } catch (error) {
+      console.log(error)
       res.status(400).send(error)
   }
 })
@@ -50,6 +51,7 @@ router.patch('/' , async ( req,res ) =>{
        await bookMark.save()
        res.status(200).send(bookMark)
     } catch (error) {
+        console.log(error)
         res.status(400).send(error)
     }
   })
@@ -58,13 +60,14 @@ router.patch('/' , async ( req,res ) =>{
 //Delete a tag
 router.delete('/' , async (req,res) =>{
     try {
-        const tag = await Tag.findOneAndDelete({ title: req.body.title })
+        const tag = await Tag.findOneAndDelete({ title: req.body.tagTitle })
         if(!tag){
             res.status(404).send('requested tag does not exist')
         }
 
         res.status(200).send(tag)
     } catch (error) {
+        console.log(error)
         res.status(400).send(error)
     }
 })

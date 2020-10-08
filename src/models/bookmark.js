@@ -18,7 +18,6 @@ const bookmarkSchema = mongoose.Schema({
     tags:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:'Tag',
-        unique: true
     }],
     createdAt: Number,
     updatedAt: Number,

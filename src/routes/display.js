@@ -10,6 +10,7 @@ router.get('/bookmarks' , async (req,res) =>{
         const bookMarks = await BookMark.find({})
         res.status(201).send(bookMarks)
     } catch (error) {
+        console.log(error)
         res.status(500).send()
     }
 
@@ -22,6 +23,7 @@ router.get('/tags' , async (req,res) =>{
         const tags = await Tag.find({})
         res.status(201).send(tags)
     } catch (error) {
+        console.log(error)
         res.status(500).send()
     }
 

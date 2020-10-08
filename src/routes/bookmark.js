@@ -4,11 +4,6 @@ const BookMark = require('../models/bookmark')
 
 //Create a new bookmark
 router.post('/' , async (req,res) =>{
-    await res.render('bookmark')
-})
-
-//Create a new bookmark
-router.post('/' , async (req,res) =>{
     const fieldObject = Object.keys(req.body)
     const fields = ['link', 'title', 'publisher']
 
@@ -21,10 +16,9 @@ router.post('/' , async (req,res) =>{
     const bookMark = new BookMark(req.body)
     try {
         await bookMark.save()
-        res.status(201).send(bookMark).render('bookmark', {
-            bookMark
-        })
+        res.status(201).send(bookMark)
     } catch (error) {
+        console.log(error)
         res.status(400).send(error)
     }
 
@@ -32,17 +26,17 @@ router.post('/' , async (req,res) =>{
 
 
 //Delete a bookmark by id
-router.delete('/:id' , async (req,res) =>{
+router.delete('/' , async (req,res) => {
     try {
-        const bookMark = await BookMark.findByIdAndDelete(req.params.id)
-        
+        const bookMark = await BookMark.findByIdAndDelete(req.body.bookmarkId)
         if(!bookMark){
-            res.status(404).send('requested bookmark does not exist')
+           return res.status(404).send('requested bookmark does not exist')
         }
 
         res.status(200).send(bookMark)
     } catch (error) {
-        res.status(400).send(error)
+       console.log(error)
+       return res.status(400).send(error)
     }
 })
 
